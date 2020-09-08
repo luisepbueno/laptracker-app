@@ -1,0 +1,22 @@
+<ion-header translucent>
+  <ion-toolbar>
+    <ion-text color="primary">
+      <p class="ion-padding-start">Escolha a pista</p>
+    </ion-text>
+    <ion-searchbar showCancelButton='always' (ionCancel)="onCancel()" (ionChange)="onChange($event)"></ion-searchbar>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-text *ngIf="listedTracksFiltered.length==0">
+    <p class="ion-padding">Nenhuma pista encontrada.</p>
+  </ion-text>
+
+  <ion-list *ngIf="listedTracksFiltered.length>0">
+    <ion-item *ngFor="let track of listedTracksFiltered" (click)="onSelectTrack(track.id)">
+      <ion-label>
+        {{ track.name }}
+      </ion-label>
+    </ion-item>
+  </ion-list>
+</ion-content>

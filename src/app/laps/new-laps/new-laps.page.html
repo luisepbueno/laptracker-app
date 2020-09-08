@@ -1,0 +1,70 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Novas voltas</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/laps"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form (ngSubmit)="onSubmit()" #form="ngForm">
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <ion-text>
+            <h2 class="ion-text-center">Pista <span class="track-name">{{trackName}}</span></h2>
+          </ion-text>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-item>
+            <ion-label position="stacked">Número de voltas</ion-label>
+            <ion-input (ionFocus)="onLapCountFocus($event)"
+              type="number"
+              ngModel
+              name="lapCount"
+              paceholder="0"
+              required
+            ></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-item>
+            <ion-label position="stacked">Tempo da melhor volta</ion-label>
+            <ion-input (ionFocus)="onBestTimeFocus($event)"
+              type="text"
+              ngModel
+              name="bestTime"
+              pattern="\d{2}:\d{2}\.\d{3}"
+              placeholder="00:00.000"
+              required
+            ></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-item>
+            <ion-label position="stacked">Data</ion-label>
+            <ion-datetime
+              ngModel
+              name="date"
+              displayFormat="DD/MM/YYYY"
+              pickerFormat="DD MMM YYYY"
+              required
+            ></ion-datetime>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="3" offset="7">
+          <ion-button type="submit" color="primary" [disabled]="!form.valid">Adicionar</ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </form>
+</ion-content>

@@ -1,0 +1,27 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Times</ion-title>
+    <ion-buttons slot="start">
+      <!--<ion-back-button defaultHref="/"></ion-back-button>-->
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+    <ion-spinner *ngIf="isLoading"></ion-spinner>
+
+    <div *ngIf="!isLoading">
+      <ion-card>
+        <ion-card-header color="primary">
+          <ion-card-title>
+            Analysis
+          </ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+          Analysis
+        </ion-card-content>
+      </ion-card>
+    </div>
+</ion-content>

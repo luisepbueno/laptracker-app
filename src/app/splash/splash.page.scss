@@ -1,0 +1,13 @@
+.splash-screen {
+    --ion-background-color: var(--ion-color-primary);
+}
+
+.splash-text {
+    color: var(--ion-color-primary-contrast);
+    font-weight: bolder;
+    font-size: xxx-large;
+}
+
+ion-grid, ion-row {
+    height: 100%;
+}

@@ -1,0 +1,44 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Nova Pista</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/tracks"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="ion-padding">
+  <form (ngSubmit)="onCreateTrack()" #f="ngForm">
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <ion-item>
+            <ion-label position="floating">Nome da pista</ion-label>
+            <ion-input
+              type="text"
+              ngModel
+              name="name"
+              required
+            ></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <!--<ion-row>
+        <ion-col size-md="6" offset-md="3">
+          <ion-item>
+            <ion-label position="floating">Localização</ion-label>
+          </ion-item>
+        </ion-col>
+      </ion-row>-->
+      <ion-row>
+        <ion-col size="3" offset="7">
+          <ion-button
+            type="submit"
+            class="primary"
+            [disabled]="!f.valid"
+          >Cadastrar</ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </form>
+</ion-content>

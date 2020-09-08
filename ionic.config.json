@@ -1,0 +1,7 @@
+{
+  "name": "LapTracker",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
