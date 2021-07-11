@@ -4,7 +4,7 @@ import { take, tap } from 'rxjs/operators';
 
 import { Track } from './track.model';
 import { TracksService } from './tracks.service';
-import { LoadingController, ToastController } from '@ionic/angular';
+import { LoadingController, ToastController, AlertController } from '@ionic/angular';
 
 @Component({
   selector: 'app-track',
@@ -21,7 +21,8 @@ export class TracksPage implements OnInit, OnDestroy {
   constructor(
     private loadingCtrl: LoadingController,
     private tracksService: TracksService,
-    private toastCtrl: ToastController
+    private toastCtrl: ToastController,
+    private alertCtrl: AlertController
   ) { }
 
   ngOnInit() {
@@ -60,6 +61,34 @@ export class TracksPage implements OnInit, OnDestroy {
               toast.present();
             })
         });
+    })
+  }
+
+  onDelTrack(trackId: number) {
+    this.alertCtrl.create({
+      header: 'Deletar pista',
+      message: 'Deseja deletar esta pista?',
+      buttons: [
+        'Cancelar'
+        ,
+        {
+          text: 'Deletar',
+          handler: () => {
+            //console.log('removido');
+            this.isLoading = true;
+            this.tracksService.deleteTrack(trackId)
+              .then( () => {
+                this.isLoading = false;
+              })
+              .catch( (error) => {
+                console.log(error);
+                this.isLoading = false;
+              })
+          }
+        }
+      ]
+    }).then( alertEl => {
+      alertEl.present();
     })
   }
 

@@ -3,7 +3,6 @@ import { NgForm } from '@angular/forms';
 import { TracksService } from '../tracks.service';
 import { Router } from '@angular/router';
 import { LoadingController, ToastController } from '@ionic/angular';
-import { logging } from 'protractor';
 
 @Component({
   selector: 'app-new-track',
@@ -37,10 +36,9 @@ export class NewTrackPage implements OnInit {
       .then((loadingEl) => {
           loadingEl.present();
           let trackName = this.form.value['name'];
-          this.tracksService.addTrack(trackName)
-            .then((res) => {
-              console.log(res);
-              console.log('on create track 4');
+          this.tracksService
+            .addTrack(trackName)
+            .then(() => {
               loadingEl.dismiss();
               this.router.navigateByUrl('/tracks');
             })

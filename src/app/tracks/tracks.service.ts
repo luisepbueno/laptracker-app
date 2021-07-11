@@ -38,13 +38,13 @@ export class TracksService {
           httpOptions
         )
         .pipe(
-          take(1),
           switchMap(
             (data) => {
               trackId = data.id;
               return this.tracks;
             }
           ),
+          take(1),
           tap(
             (tracks) => {
               newTrack.id = trackId;
@@ -54,9 +54,31 @@ export class TracksService {
         )
         .toPromise()
       })
-      .catch(err => {
-        throw new Error(err);
-      });
+  }
+
+  deleteTrack(trackId: number) {
+    return this.authService.getToken()
+      .then(token => {
+        const httpOptions = {
+          headers: new HttpHeaders({
+            'Authorization': token
+          })
+        }
+        return this.http.delete(
+          `${environment.restApiUrl}/track/` + trackId,
+          httpOptions
+        )
+        .pipe(
+          switchMap ( () => {
+            return this.tracks;
+          }),
+          take(1),
+          tap( (tracks) => {
+            this._tracks.next(tracks.filter(t => t.id != trackId));
+          })
+        )
+        .toPromise()
+      })
   }
 
   fetchTracks() {

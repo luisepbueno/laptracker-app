@@ -68,13 +68,14 @@ export class SignupPage implements OnInit {
                 loadingCtrlEl.dismiss();
               },
               (error) => {
-                for (let err of error.error.errors) {
-                  this.errors.push(err.msg);
-                }
+                this.errors.push(error.message);
                 loadingCtrlEl.dismiss();
               }
             )
           }
+        else {
+          loadingCtrlEl.dismiss();
+        }
       })
   }
 }

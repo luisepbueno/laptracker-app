@@ -6,8 +6,9 @@ export const environment = {
   production: false,
   //firebaseUrl: 'https://laptracker-1c4ba.firebaseio.com/',
   //firebaseApiKey: 'AIzaSyAgKEQaPF3UFpUQP8J2XV21GUc2wgPRl4M',
-  restApiUrl: 'http://localhost:8000'
+  //restApiUrl: 'http://localhost:8000'
   //restApiUrl: 'http://127.0.0.1:8000'
+  restApiUrl: 'http://192.168.0.29:8000'
 };
 
 /*

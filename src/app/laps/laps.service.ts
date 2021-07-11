@@ -32,6 +32,7 @@ export class LapsService {
   addLap(trackId: number, date: Date, bestTime: number, lapCount: number) {
     const newLapSet = new Lap(null, trackId, date, bestTime, lapCount);
     let lapId: number;
+
     return this.authService.getToken()
       .then((token) => {
         const httpOptions = {
