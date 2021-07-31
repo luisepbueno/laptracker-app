@@ -93,6 +93,8 @@ export class LapsService {
         })
       .catch((err) => {
         this._laps.next([]);
+        if (err.status == 401)
+          this.authService.logout ();
         throw new Error(err);
       });
   }

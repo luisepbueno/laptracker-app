@@ -6,6 +6,7 @@ import { Storage } from '@ionic/storage';
 import { environment } from '../../environments/environment';
 import { User, UserData } from './user.model';
 import { of } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -17,7 +18,8 @@ export class AuthService {
 
   constructor(
     private http: HttpClient,
-    private storage: Storage
+    private storage: Storage,
+    private router: Router
   ) {}
 
   login(email: string, password: string) {
@@ -53,7 +55,10 @@ export class AuthService {
   logout() {
     this.user = null;
     this._isLogged = false;
-    return this.storage.remove('token');
+    return this.storage.remove('token')
+      .then( () => {
+        this.router.navigateByUrl(`/auth`);
+      });
   }
 
   signUp(email: string, password: string) {

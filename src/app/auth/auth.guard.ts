@@ -20,6 +20,7 @@ export class AuthGuard implements CanLoad {
         this.router.navigateByUrl('/splash');
         return false;
       }
+      // TODO: Check token is valid
       return true;
   }
 }

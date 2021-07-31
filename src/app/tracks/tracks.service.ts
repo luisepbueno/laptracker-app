@@ -102,6 +102,8 @@ export class TracksService {
       })
       .catch((err) => {
         this._tracks.next([]);
+        if (err.status == 401)
+          this.authService.logout ();
         throw new Error(err);
       });
   }

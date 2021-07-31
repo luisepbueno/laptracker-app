@@ -4,6 +4,8 @@ import { Subscription } from 'rxjs';
 import { LapsService } from '../laps/laps.service';
 import { Lap } from '../laps/lap.model';
 import { TracksService } from '../tracks/tracks.service';
+import { ToastController } from '@ionic/angular';
+import { AuthService } from '../auth/auth.service';
 
 @Component({
   selector: 'app-home',
@@ -19,7 +21,8 @@ export class HomePage  implements OnInit, OnDestroy {
 
   constructor(
     private lapsService: LapsService,
-    private tracksService: TracksService
+    private tracksService: TracksService,
+    private toastCtrl: ToastController
   ) {}
 
   ngOnInit() {
@@ -43,7 +46,7 @@ export class HomePage  implements OnInit, OnDestroy {
           lapsInThisTrack.forEach( (lap) => { times.push(Number(lap.best_time)); });
           const bestLap = lapsInThisTrack.reduce( (a,b) => { return (a.best_time<b.best_time) ? a : b; });
           this.tracksService.track(trackId)
-            .then((track) => {
+            .then( track => {
               this.bestLaps.push({
                 lap: bestLap,
                 track: track
@@ -61,6 +64,18 @@ export class HomePage  implements OnInit, OnDestroy {
   }
 
   ionViewWillEnter() {
-    this.lapsService.fetchLaps().then(()=>{});
+    this.lapsService.fetchLaps()
+      .then( () => {} )
+      .catch (err => {
+        this.toastCtrl.create({
+          message: 'Error connecting to backend',
+          animated: true,
+          duration: 2000,
+          position: 'middle'
+        })
+          .then((toast) => {
+            toast.present();
+          })
+      });
   }
 }
