@@ -72,8 +72,7 @@ export class AuthPage implements OnInit {
             loadingCtrlEl.dismiss();
           },
           (error) => {
-            console.log(error);
-            this.errors.push(error.error);
+            this.errors.push(error.error.msg);
             loadingCtrlEl.dismiss();
           });
     })
