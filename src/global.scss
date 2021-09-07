@@ -26,10 +26,14 @@
 @import "~@ionic/angular/css/flex-utils.css";
 
 .error-box {
-    padding: 1rem;
+    width: 100%;
     margin: 1rem;
     border: 1px solid #eb4d4b;
     background-color: #ff7979;
-    color: white;
     text-align: center;
+}
+
+.error-box .error-text {
+    color: white;
+    margin-bottom: 0.5rem;
 }

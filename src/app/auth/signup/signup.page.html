@@ -43,7 +43,7 @@
       <ion-row *ngIf="errors.length > 0">
         <div class="error-box">
           <ion-col size="12">
-            <div *ngFor="let error of errors">{{ error }}</div>
+            <div *ngFor="let error of errors" class="error-text">{{ error }}</div>
           </ion-col>
         </div>
       </ion-row>
